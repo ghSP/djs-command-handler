@@ -11,5 +11,6 @@
     "discord.js",
     "bot"
   ],
-  "repository": "github:yaas-dev/djs-command-handler"
+  "repository": "github:yaas-dev/djs-command-handler",
+  "version": "1.0.0"
 }
