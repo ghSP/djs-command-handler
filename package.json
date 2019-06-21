@@ -1,0 +1,15 @@
+{
+  "name": "@yaas/command-handler",
+  "description": "A discord.js command handler based off of nedinator's",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Sam Price",
+  "keywords": [
+    "discord",
+    "discord.js",
+    "bot"
+  ],
+  "repository": "github:yaas-dev/djs-command-handler"
+}
