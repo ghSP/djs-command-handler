@@ -27,6 +27,7 @@ module.exports = class Handler {
       });
     });
     console.info('Loaded All Commands! TOTAL: ' + files.length);
+    console.info('Prefixes: ' + this.prefix.join(' '));
   }
 
   get(string) {
