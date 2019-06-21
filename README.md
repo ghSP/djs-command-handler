@@ -18,7 +18,7 @@ const CommandHandler = require('@yaas/command-handler');
 const { Client } = require('discord.js');
 
 const client = new Client();
-const CH = new CommandHandler({       // This example uses the default path in the config.
+const CH = new CommandHandler({
   folder: __dirname + '/commands/',
   prefixes: ['?', '>'],  // NOTE: prefixes may not contain spaces
 });
@@ -27,7 +27,7 @@ client.on('message', message => {
   const args = message.content.split(/\s+/g);
   const command = args.shift();
 
-  const cmd = CH.getCommand(command);
+  const cmd = CH.get(command);
 
   if(cmd === null) return;
 

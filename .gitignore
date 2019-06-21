@@ -1,2 +1,4 @@
 # Only has single quote rule changed
 .prettierrc.json
+demo/
+node_modules/

@@ -1,80 +1,57 @@
-const path = require('path');
 const fs = require('fs');
 
-/**
- * @example
- * const CH = new CommandHandler({
- *  folder: __dirname + '/commands/',
- *  prefixes: ['$', '>'], // This is possible due to the Array.from(...)
- * });
- */
+module.exports = class Handler {
+  constructor(config) {
+    if (!config.folder) throw new Error('Folder necessary! config.folder');
 
-class CommandHandler {
-  constructor(config = {}) {
-    this.folder = config.folder || path.join(__dirname + '/commands/');
-    this.prefixes = Array.from(config.prefixes) || ['!'];
-    this.prefixes.sort((a, b) => a.length < b.length);
-    if (this.prefixes.some(p => p.includes(' '))) {
-      throw new Error('Prefixes may not contain spaces!');
-    }
-    CommandHandler.loadFrom(this.folder);
+    this.commands = new Map();
+    this.aliases = new Map();
+
+    this.folder = config.folder;
+    this.prefix = config.prefix || ['!'];
+    this.prefix.sort((a, b) => a.length < b.length);
+
+    this.load(this.folder);
   }
 
-  static loadFrom(folder) {
-    const commands = new Map();
-    const aliases = new Map();
-
-    const files = fs.readdirSync(folder).filter(f => f.endsWith('.js'));
-
-    if (files.length === 0) throw new Error('No files to load!');
-
-    console.info(`Proceeding to load ${files.length} commands`);
+  load(folder) {
+    const files = fs.readdirSync(folder);
+    files.filter(f => f.endsWith('.js'));
 
     files.forEach(f => {
-      const file = require(`${folder}${f}`);
-      const command = new file();
-      commands.set(command.name, command);
-      command.aliases.forEach(alias => {
-        aliases.set(alias, command.name);
+      const file = require(folder + f);
+      const cmd = new file();
+      this.commands.set(cmd.name, cmd);
+      cmd.aliases.forEach(alias => {
+        this.aliases.set(alias, cmd.name);
       });
-      console.info(`Loaded: ${command.name}`);
     });
-
-    console.info('\nLoaded All Commands!');
-    this.commands = commands;
-    this.aliases = aliases;
+    console.info('Loaded All Commands! TOTAL: ' + files.length);
   }
 
-  /**
-   *
-   * @param {string} str String
-   */
-  getCommand(str) {
-    if (!str) return null;
+  get(string) {
+    if (!string || typeof string !== 'string') return null;
 
-    let prefix = null;
-
-    this.prefixes.forEach(p => {
-      if (str.startsWith(p)) {
+    let prefix = false;
+    let cmd = '';
+    this.prefix.forEach(p => {
+      if (string.indexOf(p) === 0) {
         prefix = p;
+        cmd = string.slice(prefix.length);
       }
     });
 
     if (prefix === null) return null;
 
-    const command = str.slice(prefix.length);
+    const file =
+      this.commands.get(cmd) ||
+      this.commands.get(this.aliases.get(cmd)) ||
+      null;
 
-    const cmd =
-      this.commands.get(command) ||
-      this.commands.get(this.aliases.get(command));
-
-    if (cmd) {
-      return cmd;
+    if (file) {
+      return file;
+    } else {
+      return null;
     }
-
-    return null;
   }
-}
-
-module.exports = CommandHandler;
-exports.Default = new CommandHandler();
+};

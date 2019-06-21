@@ -1,4 +1,6 @@
 .prettierrc.json
 .gitignore
 .git/
+demo/
+node_modules/
 example.js
