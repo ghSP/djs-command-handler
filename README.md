@@ -1,6 +1,6 @@
 # Command Handler
 
-[![ghub-activity-shield]][ghub-url] [![npmv-shield]][npm-url]
+[![ghub-activity-shield]][ghub-url] [![npmv-shield]][npm-url] [![MIT]][MIT-url]
 
 ## Installation
 
@@ -79,3 +79,5 @@ module.exports = class command {
 [ghub-url]: https://github.com/yaas-dev/djs-command-handler
 [npmv-shield]: https://img.shields.io/npm/v/@yaas/command-handler.svg?logo=npm
 [npm-url]: https://www.npmjs.com/package/@yaas/command-handler
+[MIT]: https://img.shields.io/badge/license-MIT-informational.svg
+[MIT-url]: https://choosealicense.com/licenses/mit/
