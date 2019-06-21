@@ -1,4 +1,5 @@
 # Command Handler
+[![npm-shield]][npm-url] [![npmv-shield]][npm-url]
 
 ## Installation
 This one is nice and simple!
@@ -63,3 +64,7 @@ module.exports = class command {
   }
 }
 ```
+
+[npm-shield]: https://img.shields.io/npm/dt/@yaas/command-handler.svg?color=green&logo=npm
+[npmv-shield]: https://img.shields.io/npm/v/@yaas/command-handler.svg?logo=npm
+[npm-url]: https://www.npmjs.com/package/@yaas/command-handler
