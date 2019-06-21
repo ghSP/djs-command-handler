@@ -38,3 +38,28 @@ client.on('message', message => {
   }
 });
 ```
+
+This should be your file structure:
+```
+- index.js
+- package.json
+- node_modules
+  - ...
+- commands
+  - test.js
+```
+
+This is what `test.js` looks like:
+```js
+module.exports = class command {
+  constructor() {
+    this.name = 'test';
+    this.aliases = [];
+    this.description = '?test';
+  }
+
+  async run(client, message, args) {
+    message.reply('Test works!');
+  }
+}
+```
