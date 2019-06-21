@@ -42,12 +42,12 @@ client.on('message', message => {
 
 This should be your file structure:
 ```
-- index.js
-- package.json
-- node_modules
-  - ...
-- commands
-  - test.js
+.
+├── index.js
+├── node_modules/
+│   └── ...
+└── commands/
+    └── test.js
 ```
 
 This is what `test.js` looks like:
