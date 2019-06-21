@@ -5,7 +5,7 @@ const fs = require('fs');
  * @example
  * const CH = new CommandHandler({
  *  folder: __dirname + '/commands/',
- *  prefixes: '$>', // This is possible due to the Array.from(...)
+ *  prefixes: ['$', '>'], // This is possible due to the Array.from(...)
  * });
  */
 
