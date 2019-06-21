@@ -12,5 +12,6 @@
     "bot"
   ],
   "repository": "github:yaas-dev/djs-command-handler",
-  "version": "2.0.3"
+  "version": "2.1.0",
+  "types": "./types/index.d.ts"
 }
