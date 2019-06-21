@@ -14,6 +14,9 @@ class CommandHandler {
     this.folder = config.folder || path.join(__dirname + '/commands/');
     this.prefixes = Array.from(config.prefixes) || ['!'];
     this.prefixes.sort((a, b) => a.length < b.length);
+    if (this.prefixes.some(p => p.includes(' '))) {
+      throw new Error('Prefixes may not contain spaces!');
+    }
     CommandHandler.loadFrom(this.folder);
   }
 
